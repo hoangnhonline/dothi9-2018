@@ -69,6 +69,7 @@
             @if( $items->count() > 0 )
               <?php $i = 0; ?>
               @foreach( $items as $item )
+              
                 <?php $i ++; ?>
               <tr id="row-{{ $item->id }}">
                 <td><span class="order">{{ $i }}</span></td>      
@@ -82,7 +83,11 @@
 
                   <p>{{ $item->description }}</p>
                 </td>
-                <td>{{ $item->account->full_name }}</td>
+                <td>
+                  @if($item->account)
+                  {{ $item->account->full_name }}
+                  @endif
+                </td>
                 <td style="white-space:nowrap">   
                 
                   <a class="btn btn-default btn-sm" href="{{ route('danh-muc', $item->slug ) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>               

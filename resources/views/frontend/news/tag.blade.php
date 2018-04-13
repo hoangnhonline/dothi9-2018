@@ -1,7 +1,4 @@
 @extends('frontend.layout')
-  
-  
-  @include('frontend.news.content')
 @include('frontend.partials.meta')
   
 

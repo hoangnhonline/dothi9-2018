@@ -235,6 +235,7 @@
          async defer></script>
 <script type="text/javascript">
  $(document).ready(function () {
+ 	 
     $('.bxslider .item').each(function () {
         $(this).zoom();
     });
@@ -279,7 +280,7 @@
 	});
 
 });
-
+  
 </script>
 @endsection
 

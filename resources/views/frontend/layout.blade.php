@@ -168,7 +168,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 												<select class="selectpicker form-control" data-live-search="true" id="city_id" name="city_id">
 													<option value="">Tỉnh/TP</option>
 													@foreach($cityList as $city)
-													<option value="{{ $city->id }}">{!! $city->name !!}</option>
+													<option value="{{ $city->id }}" @if(isset($city_id) && $city_id == $city->id) selected @endif>{!! $city->name !!}</option>
 													@endforeach
 												</select>
 											</div>										
@@ -356,6 +356,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 		        }
 		    });		    
+		    $('#city_id').change(function() {
+		        var city_id = $(this).val();
+		        getDistrict(city_id);
+		      });
 		    @if(isset($city_id) && $city_id > 0)
 		    var city_id = {{ $city_id }};
 		    $('#city_id').val(city_id);
@@ -563,7 +567,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				});
 			@endif
 		});
-		
+		function getDistrict(city_id) {
+
+	        if(!city_id) {
+	          $('#district_id').empty();
+	          $('#district_id').append('<option value="0">Chọn Quận/Huyện</option>');
+	          return;
+	        }
+
+	        $.ajax({
+	          url: "{{ route('get-district') }}",
+	          method: "POST",
+	          data : {
+	            id: city_id
+	          },
+	          success : function(list_ward){          	
+	            $('#district_id').empty();
+	            $('#district_id').append('<option value="0">Chọn Quận/Huyện</option>');
+
+	            for(i in list_ward) {
+	              $('#district_id').append('<option value="'+list_ward[i].id+'">'+list_ward[i].name+'</option>');
+	            }
+	            $('.selectpicker').selectpicker('refresh');
+	          }
+	        });
+	      }   
 	</script>
 
 </body>

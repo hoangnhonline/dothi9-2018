@@ -86,7 +86,8 @@ class DetailController extends Controller
         $price_id = $detail->price_id;
         $no_room = $detail->no_room;
         $project_id = $detail->project_id;
-        $direction_id = $detail->direction_id;        
+        $direction_id = $detail->direction_id;
+        $city_id = $detail->city_id;
         $tienIch = Product::productTienIchName($detail->id);
         return view('frontend.detail.index', compact('detail', 'rsLoai', 'hinhArr', 'productArr', 'seo', 'socialImage', 'otherList', 'tagSelected',
             'type',
@@ -99,7 +100,8 @@ class DetailController extends Controller
             'area_id',
             'project_id',
             'price_id',
-            'tienIch'           
+            'tienIch',
+            'city_id'     
             ));
     }
     public function tagDetail(Request $request){
