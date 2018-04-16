@@ -210,7 +210,228 @@ class ProductController extends Controller
                 ));
         
     }       
+    public function customSearch(Request $request)
+    {
+        $productArr = [];
+        $slug = $request->slug;
+        
+        $tmpArr = explode("-", $slug);
+        $count = count($tmpArr);
+        $object_type = $tmpArr[$count-3];
+        
+        $city_id = $request->city_id;
+        $district_id = $request->district_id;
+        $ward_id = $request->ward_id;            
+        $street_id = $request->street_id;
+        $project_id = $request->project_id;
+        if($object_type == 1){ // city
+            $city_id = $tmpArr[$count-1];
+            $estate_type_id = $tmpArr[$count-2];
 
+        }elseif($object_type == 2){
+            $district_id = $tmpArr[$count-1];
+            $city_id = District::find($district_id)->city_id;
+            $estate_type_id = $tmpArr[$count-2];
+          
+        }elseif($object_type == 3){
+            $ward_id = $tmpArr[$count-1];
+            $detailW = Ward::find($ward_id);
+            $district_id = $detailW->district_id;
+            $city_id = $detailW->city_id;
+            $estate_type_id = $tmpArr[$count-2];          
+           
+        }elseif($object_type == 4){
+            $street_id = $tmpArr[$count-1];
+            $detailStreet = Street::find($street_id);            
+            $district_id = $detailStreet->district_id;
+            $city_id = $detailStreet->city_id;
+            $estate_type_id = $tmpArr[$count-2];           
+        }elseif($object_type == 5){
+            $project_id = $tmpArr[$count-1];
+            $detailStreet = Project::find($project_id);            
+            $district_id = $detailStreet->district_id;
+            $city_id = $detailStreet->city_id;
+            $estate_type_id = $tmpArr[$count-2];           
+        }            
+            $price_id = $request->price_id;
+            $area_id = $request->area_id;
+         
+            $no_room = $request->no_room;
+            $direction_id = $request->direction_id;
+
+            $query = Product::where('estate_type_id', $estate_type_id);
+            if($city_id){
+                $query->where('city_id', $city_id);
+            }
+            if($district_id){
+                $query->where('district_id', $district_id);
+            }
+            if($ward_id){
+                $query->where('ward_id', $ward_id);
+            }
+            if($project_id){
+                $query->where('project_id', $project_id);
+            }
+            if($price_id){
+                $query->where('price_id', $price_id);
+            }
+            if($area_id){
+                $query->where('area_id', $area_id);
+            }
+            if($street_id){
+                $query->where('street_id', $street_id);
+            }
+            if($direction_id){
+                $query->where('direction_id', $direction_id);
+            }
+                $query->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id') 
+                ->join('estate_type', 'estate_type.id', '=','product.estate_type_id')                
+                ->select('product_img.image_url as image_urls', 'product.*', 'estate_type.slug as slug_loai')              
+                ->where('product_img.image_url', '<>', '')
+                ->orderBy('product.is_hot', 'desc')
+                ->orderBy('product.cart_status', 'asc')
+                ->orderBy('product.id', 'desc');
+                $productList  = $query->paginate(10);
+                $productArr = $productList->toArray();
+            
+            
+            $seo['title'] = $seo['description'] = $seo['keywords'] = 'Tìm kiếm';
+            
+            return view('frontend.cate.search', compact('productList','productArr', 'socialImage', 'seo',
+            'type',
+            'estate_type_id',
+            'street_id',
+            'ward_id',
+            'district_id',
+            'no_room',
+            'direction_id',
+            'area_id',
+            'project_id',
+            'price_id',
+            'city_id'
+                ));
+        
+    }
+    public function customSearch2(Request $request)
+    {
+        $productArr = [];
+        $slug = $request->slug;
+        
+        $tmpArr = explode("-", $slug);
+        $count = count($tmpArr);
+        $object_type = $tmpArr[$count-3];
+        
+        $city_id = $request->city_id;
+        $district_id = $request->district_id;
+        $ward_id = $request->ward_id;            
+        $street_id = $request->street_id;
+        $project_id = $request->project_id;
+        if($object_type == 1){ // city
+            $city_id = $tmpArr[$count-1];
+            $estate_type_id = $tmpArr[$count-2];
+
+        }elseif($object_type == 2){
+            $district_id = $tmpArr[$count-1];
+            $city_id = District::find($district_id)->city_id;
+            $estate_type_id = $tmpArr[$count-2];
+          
+        }elseif($object_type == 3){
+            $ward_id = $tmpArr[$count-1];
+            $detailW = Ward::find($ward_id);
+            $district_id = $detailW->district_id;
+            $city_id = $detailW->city_id;
+            $estate_type_id = $tmpArr[$count-2];          
+           
+        }elseif($object_type == 4){
+            $street_id = $tmpArr[$count-1];
+            $detailStreet = Street::find($street_id);            
+            $district_id = $detailStreet->district_id;
+            $city_id = $detailStreet->city_id;
+            $estate_type_id = $tmpArr[$count-2];           
+        }elseif($object_type == 5){
+            $project_id = $tmpArr[$count-1];
+            $detailStreet = Project::find($project_id);            
+            $district_id = $detailStreet->district_id;
+            $city_id = $detailStreet->city_id;
+            $estate_type_id = $tmpArr[$count-2];           
+        }           
+        $q = $request->q;
+        $tmpArr = explode("-", $q);
+        $price_id = $request->price_id;
+        $area_id = $request->area_id;
+     
+        $no_room = $request->no_room;
+        $direction_id = $request->direction_id;
+        if(!empty($tmpArr)){
+            foreach($tmpArr as $tmp){
+                $tmp2 = explode(":", $tmp);
+                if($tmp2[0] == 'p'){
+                    $price_id = $tmp2[1];
+                }elseif($tmp2[0] == 'a'){
+                    $area_id = $tmp2[1];
+                }elseif($tmp2[0] == 'd'){
+                    $direction_id = $tmp2[1];
+                }elseif($tmp2[0] == 'r'){
+                    $no_room = $tmp2[1];
+                }
+            }
+        }
+
+            
+
+            $query = Product::where('estate_type_id', $estate_type_id);
+            if($city_id){
+                $query->where('city_id', $city_id);
+            }
+            if($district_id){
+                $query->where('district_id', $district_id);
+            }
+            if($ward_id){
+                $query->where('ward_id', $ward_id);
+            }
+            if($project_id){
+                $query->where('project_id', $project_id);
+            }
+            if($price_id){
+                $query->where('price_id', $price_id);
+            }
+            if($area_id){
+                $query->where('area_id', $area_id);
+            }
+            if($street_id){
+                $query->where('street_id', $street_id);
+            }
+            if($direction_id){
+                $query->where('direction_id', $direction_id);
+            }
+                $query->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id') 
+                ->join('estate_type', 'estate_type.id', '=','product.estate_type_id')                
+                ->select('product_img.image_url as image_urls', 'product.*', 'estate_type.slug as slug_loai')              
+                ->where('product_img.image_url', '<>', '')
+                ->orderBy('product.is_hot', 'desc')
+                ->orderBy('product.cart_status', 'asc')
+                ->orderBy('product.id', 'desc');
+                $productList  = $query->paginate(10);
+                $productArr = $productList->toArray();
+            
+            
+            $seo['title'] = $seo['description'] = $seo['keywords'] = 'Tìm kiếm';
+            
+            return view('frontend.cate.search', compact('productList','productArr', 'socialImage', 'seo',
+            'type',
+            'estate_type_id',
+            'street_id',
+            'ward_id',
+            'district_id',
+            'no_room',
+            'direction_id',
+            'area_id',
+            'project_id',
+            'price_id',
+            'city_id'
+                ));
+        
+    }
      public function newsDetail(Request $request)
     {     
         $id = $request->id;

@@ -240,6 +240,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						</div>
 					</article><!-- /block-box-search -->	
 					@endif
+					@if(isset($district_id) && $district_id > 0)
+					<?php 
+					$wardList = DB::table('ward')->where('district_id', $district_id)->get();
+					?>
+					<article class="block-sidebar block-news-sidebar">
+						<div class="block-title-common">
+							<h3><span class="icon-tile"><i class="fa fa-th-list"></i></span> Bất động sản tại Quận 9</h3>
+						</div>
+						<div class="block-contents">
+							<ul class="block-list-sidebar block-icon1-title">
+								@foreach($wardList as $ward)
+								<li><h4><a href="{{ $ward->slug }}" title="{{ $ward->name }}">{{ $ward->name }}</a></h4></li>
+								@endforeach
+							</ul>							
+						</div>
+					</article><!-- /block-news-sidebar -->
+					@endif
+
 					<article class="block-sidebar block-news-sidebar">
 						<div class="block-title-common">
 							<h3><span class="icon-tile"><i class="fa fa-star"></i></span> Tin xem nhiều</h3>

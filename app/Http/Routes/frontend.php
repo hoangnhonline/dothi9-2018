@@ -26,7 +26,8 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::get('du-an/{slug}', ['as' => 'detail-project', 'uses' => 'ProjectsController@detail']);
     Route::get('du-an/{slug}/{slugtab}', ['as' => 'tab', 'uses' => 'ProjectsController@tab']);
     Route::post('/tmp-upload-multiple-fe', ['as' => 'image.tmp-upload-multiple-fe', 'uses' => 'UploadController@tmpUploadMultipleFE']);
-   
+    
+    
     Route::get('tag/{slug}', ['as' => 'tag', 'uses' => 'DetailController@tagDetail']);
     Route::get('tin-tuc/{slug}', ['as' => 'news-list', 'uses' => 'NewsController@newsList']);
     Route::get('{slugLoaiSp}/{slug}-{id}.html', ['as' => 'chi-tiet', 'uses' => 'DetailController@index']);
@@ -45,7 +46,7 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::get('lien-he.html', ['as' => 'contact', 'uses' => 'HomeController@contact']);
     Route::get('{slug}/{cate_slug}.html', ['as' => 'danh-muc-con', 'uses' => 'ProductController@cateChild']);
     Route::get('{slug}.html', ['as' => 'danh-muc', 'uses' => 'ProductController@cate']);
-
-
+    Route::get('/{slug}', ['as' => 'custom-search', 'uses' => 'ProductController@customSearch']); 
+    Route::get('/{slug}/{q}', ['as' => 'custom-search-2', 'uses' => 'ProductController@customSearch2']);     
 });
 
