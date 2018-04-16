@@ -160,7 +160,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 												<select class="selectpicker form-control" data-live-search="true" name="estate_type_id" id="estate_type_id">
 													<option value="">Loại bất động sản</option>
 													@foreach($banList as $ban)
-													<option @if(isset($estate_type_id) && $estate_type_id == $ban->id) selected @endif class="option-lv1" value="{{ $ban->id }}">{{ $ban->name }}</option>
+													<option data-slug="{{ $ban->slug }}" @if(isset($estate_type_id) && $estate_type_id == $ban->id) selected @endif class="option-lv1" value="{{ $ban->id }}">{{ $ban->name }}</option>
 													@endforeach
 												</select>
 											</div>	
@@ -168,7 +168,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 												<select class="selectpicker form-control" data-live-search="true" id="city_id" name="city_id">
 													<option value="">Tỉnh/TP</option>
 													@foreach($cityList as $city)
-													<option value="{{ $city->id }}" @if(isset($city_id) && $city_id == $city->id) selected @endif>{!! $city->name !!}</option>
+													<option data-slug="{{ $city->alias }}" value="{{ $city->id }}" @if(isset($city_id) && $city_id == $city->id) selected @endif>{!! $city->name !!}</option>
 													@endforeach
 												</select>
 											</div>										
@@ -176,7 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 												<select class="selectpicker form-control" data-live-search="true" id="district_id" name="district_id">
 													<option value="">Quận/Huyện</option>
 													@foreach($districtList as $district)
-													<option @if(isset($district_id) && $district_id == $district->id) selected @endif value="{{ $district->id }}">{{ $district->name }}</option>
+													<option data-slug="{{ $district->slug }}" @if(isset($district_id) && $district_id == $district->id) selected @endif value="{{ $district->id }}">{{ $district->name }}</option>
 													@endforeach
 												</select>
 											</div>
@@ -231,7 +231,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 												</select>
 											</div>											
 											<div class="form-group">
-												<button type="submit" id="btnSearch" class="btn btn-success"><i class="fa fa-search"></i> Tìm Kiếm</button>
+												<button type="button" id="btnSearch" class="btn btn-success"><i class="fa fa-search"></i> Tìm Kiếm</button>
 											</div>
 										</div>
 							    	</form>
@@ -457,6 +457,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				pager: true,
 				auto: true,
 				pause: 4000
+			});
+			$('#btnSearch').click(function(){		
+				if($('#estate_type_id').val() == ''){
+					swal({ title: '', text: 'Vui lòng chọn loại bất động sản.', type: 'error' });
+					return false;
+				}	
+				var url = $('#estate_type_id').find(":selected").data('slug');
+				
+				if($('#project_id').val() > 0){
+					url += '-' + $('#project_id').find(":selected").data('slug');
+					location.href="{{ env('app.url') }}/" + url + '-5-' + $('#estate_type_id').val() + '-' + $('#project_id').val();
+					return false;
+				}
+				if($('#street_id').val() > 0){
+					url += '-' + $('#street_id').find(":selected").data('slug');
+					location.href="{{ env('app.url') }}/" + url + '-4-' + $('#estate_type_id').val() + '-' + $('#street_id').val();
+					return false;
+				}
+				if($('#ward_id').val() > 0){
+					url += '-' + $('#ward_id').find(":selected").data('slug');
+					location.href="{{ env('app.url') }}/" + url + '-3-' + $('#estate_type_id').val() + '-' + $('#ward_id').val();
+					return false;
+				}
+				if($('#district_id').val() > 0){
+					url += '-' + $('#district_id').find(":selected").data('slug');
+					location.href="{{ env('app.url') }}/" + url + '-2-' + $('#estate_type_id').val() + '-' + $('#district_id').val();
+					return false;
+				}
+				if($('#city_id').val() > 0){					
+					url += '-' + $('#city_id').find(":selected").data('slug');
+					location.href="{{ env('app.url') }}/" + url + '-1-' + $('#estate_type_id').val() + '-' + $('#city_id').val();
+				}
 			});
 			$('#district_id').change(function(){
 				var district_id = $(this).val();

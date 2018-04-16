@@ -34,8 +34,13 @@ class Helper
         }
         if(!empty(  (array) $listData  )){
             
-            foreach($listData as $data){
-                echo "<option value=".$data->id.">".$data->name."</option>";
+            foreach($listData as $data){                
+                $s = "<option ";
+                if(isset($data->slug)){
+                    $s.= "data-slug=". $data->slug;
+                }
+                echo $s.=" value=".$data->id.">".$data->name."</option>";
+
             }
         }
     }
