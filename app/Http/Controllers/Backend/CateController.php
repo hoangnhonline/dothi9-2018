@@ -31,7 +31,7 @@ class CateController extends Controller
 
         $name = isset($request->name) && trim($request->name) != '' ? trim($request->name) : '';  
         
-        $query = Cate::where('status', 1);
+        $query = Cate::whereRaw('1');
 
         if( $is_hot ){
             $query->where('is_hot', $is_hot);
@@ -161,13 +161,13 @@ class CateController extends Controller
         $dataArr = $request->all();
         
         $this->validate($request,[            
-            'type' => 'required',
-            'estate_type_id' => 'required',
+            'parent_id' => 'required',            
             'name' => 'required',
             'slug' => 'required',            
             
         ],
         [
+            'parent_id.required' => 'Bạn chưa chọn danh mục cha',
             'name.required' => 'Bạn chưa nhập tên danh mục',
             'slug.required' => 'Bạn chưa nhập slug',
         ]);
