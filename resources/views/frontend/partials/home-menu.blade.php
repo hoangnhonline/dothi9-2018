@@ -10,11 +10,13 @@
             <ul class="level0 submenu">
                 @foreach($banList as $ban)
                 <li class="level1"><a href="{{ route('danh-muc', $ban->slug ) }}">{!! $ban->name !!}</a>
-                @if($ban->id == 6)
+                @if($ban->cate->count() > 0)
                 <ul class="level0 submenu">
-                   
-                    <li class="level1"><a href="{{ route('danh-muc-con', [$ban->slug, 'ban-dat-dong-nai'] ) }}">Bán đất Đồng Nai</a></li>                           
-                   
+                   @foreach($ban->cate as $cate)
+                   @if($cate->status == 1)
+                    <li class="level1"><a href="{{ route('danh-muc-con', [$ban->slug, $cate->slug] ) }}">{!! $cate->name !!}</a></li>                    
+                    @endif       
+                   @endforeach
                 </ul>
                 @endif
                 </li>                         
@@ -24,7 +26,15 @@
         <li class="level0 {{ (in_array(\Request::route()->getName(), ['cho-thue', 'danh-muc', 'chi-tiet']) && isset($type) && $type == 2) ? "active" : "" }}"><a href="{{ route('cho-thue') }}">BĐS cho thuê</a>
             <ul class="level0 submenu">
                 @foreach($thueList as $thue)
-                <li class="level1"><a href="{{ route('danh-muc', $thue->slug ) }}">{!! $thue->name !!}</a></li>                           
+                <li class="level1"><a href="{{ route('danh-muc', $thue->slug ) }}">{!! $thue->name !!}</a></li>@if($ban->cate->count() > 0)
+                <ul class="level0 submenu">
+                   @foreach($thue->cate as $cate)
+                   @if($cate->status == 1)
+                    <li class="level1"><a href="{{ route('danh-muc-con', [$thue->slug, $cate->slug] ) }}">{!! $cate->name !!}</a></li>                    
+                    @endif       
+                   @endforeach
+                </ul>
+                @endif                          
                 @endforeach
             </ul>
         </li><!-- END MENU BLOG -->
