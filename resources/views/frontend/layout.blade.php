@@ -636,7 +636,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	            $('#district_id').append('<option value="0">Chọn Quận/Huyện</option>');
 
 	            for(i in list_ward) {
-	              $('#district_id').append('<option value="'+list_ward[i].id+'">'+list_ward[i].name+'</option>');
+	              $('#district_id').append('<option data-slug="'+list_ward[i].slug +'"  value="'+list_ward[i].id+'">'+list_ward[i].name+'</option>');
 	            }
 	            $('.selectpicker').selectpicker('refresh');
 	          }

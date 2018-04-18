@@ -102,7 +102,7 @@ class ProductController extends Controller
     {
         $productArr = [];
 
-        $query = Product::where('product.type', 1);
+        $query = Product::where('product.type', 1)->where('product.status', 1);
         
             $query->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id') 
             ->join('estate_type', 'estate_type.id', '=','product.estate_type_id')                
@@ -124,7 +124,7 @@ class ProductController extends Controller
     {
         $productArr = [];
 
-        $query = Product::where('product.type', 2);
+        $query = Product::where('product.type', 2)->where('product.status', 1);
         
         $query->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id') 
         ->join('estate_type', 'estate_type.id', '=','product.estate_type_id')                
@@ -157,7 +157,7 @@ class ProductController extends Controller
             $no_room = $request->no_room;
             $direction_id = $request->direction_id;
 
-            $query = Product::where('estate_type_id', $estate_type_id);
+            $query = Product::where('estate_type_id', $estate_type_id)->where('product.status', 1);
             if($city_id){
                 $query->where('city_id', $city_id);
             }
@@ -259,7 +259,7 @@ class ProductController extends Controller
             $no_room = $request->no_room;
             $direction_id = $request->direction_id;
 
-            $query = Product::where('estate_type_id', $estate_type_id);
+            $query = Product::where('estate_type_id', $estate_type_id)->where('product.status', 1);
             if($city_id){
                 $query->where('city_id', $city_id);
             }
@@ -379,7 +379,7 @@ class ProductController extends Controller
 
             
 
-            $query = Product::where('estate_type_id', $estate_type_id);
+            $query = Product::where('estate_type_id', $estate_type_id)->where('product.status', 1);
             if($city_id){
                 $query->where('city_id', $city_id);
             }

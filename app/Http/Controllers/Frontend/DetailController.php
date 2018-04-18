@@ -65,7 +65,7 @@ class DetailController extends Controller
             $socialImage = ProductImg::find($detail->thumbnail_id)->image_url;
         }
 
-        $otherList = Product::where('product.slug', '<>', '')
+        $otherList = Product::where('product.slug', '<>', '')->where('product.status', 1)
                     ->where('product.type', $detail->type)
                     ->where('product.district_id', $detail->district_id)
                     ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')            
