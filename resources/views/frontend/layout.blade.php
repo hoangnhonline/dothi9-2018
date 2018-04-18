@@ -57,6 +57,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	}
 		
 	</style>
+	{!! $settingArr['head'] !!}
 </head>
 <body {{ \Request::route()->getName() == "home" ? 'class=page_home' : "" }}>
 <!-- Google Tag Manager (noscript) -->

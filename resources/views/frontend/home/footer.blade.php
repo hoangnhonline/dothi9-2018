@@ -13,8 +13,8 @@
     <div class="container">
     	<div class="block-footer row">
     		<div class="block-logo-footer col-sm-4">
-                <a href="/" title="Đô thị">
-                	<img src="http://dothi9.com/uploads/2017/06/13/logopl-1497290939.png" alt="">
+                <a href="{{ route('home') }}" title="Đô thị">
+                	<img src="{{ Helper::showImage($settingArr['logo']) }}" alt="logo footer">
                 </a>
 
             </div>
