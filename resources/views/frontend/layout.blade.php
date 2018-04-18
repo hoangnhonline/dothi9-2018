@@ -240,18 +240,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						</div>
 					</article><!-- /block-box-search -->	
 					@endif
-					@if(isset($district_id) && $district_id > 0)
+					@if(isset($district_id) && $district_id > 0 && isset($estate_type_id) && $estate_type_id > 0)
 					<?php 
 					$wardList = DB::table('ward')->where('district_id', $district_id)->get();
+					$detailEstate = DB::table('estate_type')->where('id', $estate_type_id)->first();
+					$detailDistrict = DB::table('district')->where('id', $district_id)->first();
 					?>
 					<article class="block-sidebar block-news-sidebar">
 						<div class="block-title-common">
-							<h3><span class="icon-tile"><i class="fa fa-th-list"></i></span> Bất động sản tại Quận 9</h3>
+							<h3><span class="icon-tile"><i class="fa fa-th-list"></i></span> {{ $detailEstate->name }} tại {{ $detailDistrict->name }}</h3>
 						</div>
 						<div class="block-contents">
 							<ul class="block-list-sidebar block-icon1-title">
 								@foreach($wardList as $ward)
-								<li><h4><a href="{{ $ward->slug }}" title="{{ $ward->name }}">{{ $ward->name }}</a></h4></li>
+								<li><h4><a href="{{ env('app.url') }}/{{ $detailEstate->slug }}-{{ $ward->slug }}-3-{{ $estate_type_id }}-{{ $ward->id }}" title="{{ $ward->name }}">{{ $ward->name }} 
+									<?php 
+									$rs = DB::table('product')->where(['estate_type_id' => $estate_type_id, 'ward_id' => $ward->id, 'status' => 1])->get();
+									if($rs){
+										echo '<span style="color:#37a344">('.count($rs).')';
+									}
+									?>
+								</a></h4></li>
 								@endforeach
 							</ul>							
 						</div>

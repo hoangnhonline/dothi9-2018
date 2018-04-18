@@ -34,7 +34,7 @@ class ProductController extends Controller
     */
     public function index(Request $request)
     {        
-        $arrSearch['status'] = $status = isset($request->status) ? $request->status : 1; 
+        $arrSearch['status'] = $status = isset($request->status) ? $request->status : null; 
         $arrSearch['is_hot'] = $is_hot = isset($request->is_hot) ? $request->is_hot : null;   
         $arrSearch['cart_status'] = $cart_status = isset($request->cart_status) ? $request->cart_status : [1,2,3];     
         $arrSearch['type'] = $type = isset($request->type) ? $request->type : 1;
@@ -49,9 +49,12 @@ class ProductController extends Controller
         
 
 
-        $query = Product::where('product.status', $status);
+        $query = Product::where('kygui', 0);
         if( $type ){
             $query->where('product.type', $type);
+        }
+        if( $status ){
+            $query->where('product.status', $status);
         }
         if( $estate_type_id ){
             $query->where('product.estate_type_id', $estate_type_id);
@@ -104,7 +107,7 @@ class ProductController extends Controller
     public function kygui(Request $request)
     {
 
-        $arrSearch['status'] = $status = 2;   
+        $arrSearch['status'] = $status = isset($request->status) ? $request->status : null;   
         $arrSearch['cart_status'] = $cart_status = isset($request->cart_status) ? $request->cart_status : 1;     
         $arrSearch['type'] = $type = isset($request->type) ? $request->type : 1;
         $arrSearch['estate_type_id'] = $estate_type_id = isset($request->estate_type_id) ? $request->estate_type_id : null;
@@ -116,9 +119,12 @@ class ProductController extends Controller
         $arrSearch['name'] = $name = isset($request->name) && trim($request->name) != '' ? trim($request->name) : '';       
 
 
-        $query = Product::where('product.status', 2);
+        $query = Product::where('product.kygui', 1);
         if( $type ){
             $query->where('product.type', $type);
+        }
+        if( $status ){
+            $query->where('product.status', $status);
         }
         if( $estate_type_id ){
             $query->where('product.estate_type_id', $estate_type_id);
@@ -284,7 +290,7 @@ class ProductController extends Controller
         $dataArr['slug'] = str_replace(")", "", $dataArr['slug']);
         $dataArr['alias'] = Helper::stripUnicode($dataArr['title']);
         $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;  
-        $dataArr['status'] = 1;
+        $dataArr['status'] = Auth::user()->role == 3 ? 1 : 2;
         $dataArr['created_user'] = Auth::user()->id;
         $dataArr['updated_user'] = Auth::user()->id;      
         $dataArr['city_id'] = 1;       
@@ -555,7 +561,7 @@ class ProductController extends Controller
             $dataArr['area_id'] = Helper::getAreaId($dataArr['area']);   
         }
         $model = Product::find($dataArr['id']);
-
+       // dd($dataArr['status']);
         $model->update($dataArr);
         
         $product_id = $dataArr['id'];
