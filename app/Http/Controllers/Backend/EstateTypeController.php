@@ -24,7 +24,7 @@ class EstateTypeController extends Controller
             return redirect()->route('dashboard.index');
         }
         $type = $request->type ? $request->type : 1;
-        $items = EstateType::where('status', 1)->where('type', $type)->orderBy('display_order', 'asc')->get();
+        $items = EstateType::where('type', $type)->orderBy('display_order', 'asc')->get();
         return view('backend.estate-type.index', compact( 'items', 'type'));
     }
 

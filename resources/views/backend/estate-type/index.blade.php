@@ -66,6 +66,12 @@
                 </td>
                 <td>                  
                   <a href="{{ route( 'estate-type.edit', [ 'id' => $item->id ]) }}">{{ $item->name }}</a>
+                  <br>
+                  @if($item->status == 1)
+                  <span style="color:blue">HIỆN</span>
+                  @else
+                  <span style="color:red">ẨN</span>
+                  @endif
                   
                   @if( $item->is_hot == 1 )
                   <img class="img-thumbnail" src="{{ URL::asset('backend/dist/img/star.png')}}" alt="Nổi bật" title="Nổi bật" />
