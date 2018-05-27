@@ -24,7 +24,7 @@ class InfoSeoController extends Controller
         $query = InfoSeo::whereRaw('1');
 
        
-        $items = $query->orderBy('id', 'desc')->paginate(20);
+        $items = $query->orderBy('id', 'desc')->paginate(1000);
         
       
         return view('backend.info-seo.index', compact( 'items' ));
