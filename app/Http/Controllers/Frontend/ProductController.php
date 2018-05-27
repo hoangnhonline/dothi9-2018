@@ -296,7 +296,7 @@ class ProductController extends Controller
             
             
             $seo['title'] = $seo['description'] = $seo['keywords'] = 'Tìm kiếm';
-            
+            $seo = Helper::seo();
             return view('frontend.cate.search', compact('productList','productArr', 'socialImage', 'seo',
             'type',
             'estate_type_id',
@@ -416,7 +416,7 @@ class ProductController extends Controller
             
             
             $seo['title'] = $seo['description'] = $seo['keywords'] = 'Tìm kiếm';
-            
+            $seo = Helper::seo();
             return view('frontend.cate.search', compact('productList','productArr', 'socialImage', 'seo',
             'type',
             'estate_type_id',
