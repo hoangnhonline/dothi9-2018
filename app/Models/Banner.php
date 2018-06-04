@@ -23,6 +23,6 @@ class Banner extends Model  {
      *
      * @var array
      */
-    protected $fillable = ['image_url', 'ads_url', 'time_start', 'time_end', 'object_id', 'object_type', 'type', 'display_order', 'status', 'created_user', 'updated_user'];
+    protected $fillable = ['image_url', 'ads_url', 'time_start', 'time_end', 'object_id', 'object_type', 'type', 'display_order', 'status', 'created_user', 'updated_user', 'status'];
     
 }
