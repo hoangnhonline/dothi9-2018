@@ -1,10 +1,10 @@
 @section('slider')
 <?php 
 if(!isset($project_id)){
-	$bannerArr = DB::table('banner')->where(['object_id' => 1, 'object_type' => 3])->orderBy('display_order', 'asc')->get();
+	$bannerArr = DB::table('banner')->where(['object_id' => 1, 'object_type' => 3, 'status' => 1])->orderBy('display_order', 'asc')->get();
 }else{
 	if($tab_id == 1){
-		$bannerArr =  DB::table('banner')->where(['object_id' => $project_id, 'object_type' => 4])->orderBy('display_order', 'asc')->get();
+		$bannerArr =  DB::table('banner')->where(['object_id' => $project_id, 'object_type' => 4, 'status' => 1])->orderBy('display_order', 'asc')->get();
 	}else{
 		$bannerArr = (object)[];
 	}

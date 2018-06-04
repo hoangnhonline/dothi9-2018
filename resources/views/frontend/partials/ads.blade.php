@@ -1,5 +1,5 @@
 <?php 
-$bannerArr = DB::table('banner')->where(['object_id' => 2, 'object_type' => 3])->orderBy('display_order', 'asc')->get();
+$bannerArr = DB::table('banner')->where(['object_id' => 2, 'object_type' => 3, 'status' => 1])->orderBy('display_order', 'asc')->get();
 ?>
 @if($bannerArr)
 <div id="advLeft" style="display:none">
@@ -19,7 +19,7 @@ $bannerArr = DB::table('banner')->where(['object_id' => 2, 'object_type' => 3])-
 </div><!-- /AdvLeft -->
 @endif
 <?php 
-$bannerArr = DB::table('banner')->where(['object_id' => 3, 'object_type' => 3])->orderBy('display_order', 'asc')->get();
+$bannerArr = DB::table('banner')->where(['object_id' => 3, 'object_type' => 3, 'status' => 1])->orderBy('display_order', 'asc')->get();
 ?>
 @if($bannerArr)
 <div id="advRight" style="display:none">

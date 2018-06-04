@@ -77,7 +77,7 @@
 	                </a>
 	            </div>
 	            <?php 
-				$bannerArr = DB::table('banner')->where(['object_id' => 4, 'object_type' => 3])->orderBy('display_order', 'asc')->get();
+				$bannerArr = DB::table('banner')->where(['object_id' => 4, 'object_type' => 3, 'status' => 1])->orderBy('display_order', 'asc')->get();
 				?>	           
 	            <div class="banner_adv" id="Banner_tet" style="display: block;">	
 	            <?php $i = 0; ?>

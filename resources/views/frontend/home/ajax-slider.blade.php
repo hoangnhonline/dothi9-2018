@@ -5,7 +5,7 @@
             <div class="homeslider">
                 <div class="content-slide">
                     <?php 
-                    $bannerArr = DB::table('banner')->where(['object_id' => 1, 'object_type' => 3])->orderBy('display_order', 'asc')->get();
+                    $bannerArr = DB::table('banner')->where(['object_id' => 1, 'object_type' => 3, 'status' => 1])->orderBy('display_order', 'asc')->get();
                     ?>
                     @if($bannerArr)
                     <ul id="contenhomeslider">
