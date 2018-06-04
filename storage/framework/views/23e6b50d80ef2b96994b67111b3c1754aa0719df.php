@@ -66,6 +66,12 @@
                 </td>
                 <td>                  
                   <a href="<?php echo e(route( 'estate-type.edit', [ 'id' => $item->id ])); ?>"><?php echo e($item->name); ?></a>
+                  <br>
+                  <?php if($item->status == 1): ?>
+                  <span style="color:blue">HIỆN</span>
+                  <?php else: ?>
+                  <span style="color:red">ẨN</span>
+                  <?php endif; ?>
                   
                   <?php if( $item->is_hot == 1 ): ?>
                   <img class="img-thumbnail" src="<?php echo e(URL::asset('backend/dist/img/star.png')); ?>" alt="Nổi bật" title="Nổi bật" />

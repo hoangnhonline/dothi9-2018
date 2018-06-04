@@ -60,11 +60,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	{!! $settingArr['head'] !!}
 </head>
 <body {{ \Request::route()->getName() == "home" ? 'class=page_home' : "" }}>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K6NPFDM"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-	
 	<header id="header" class="header">
 		<!-- <div class="header-register">
 			<div class="container">
@@ -355,6 +350,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	@if(\Request::route()->getName() != "du-an" && !isset($detailPage))
 	@include('frontend.partials.ads')	
 	@endif
+	 <div class="ppocta-ft-fix">
+	<div id="messengerButton"> <a href="http://fb.com/msg/bannhahemxehoiquan9" target="_blank" onclick="_gaq.push(['_trackEvent', 'Call To Action', 'Messenger Button', 'Mobile']);"><i></i></a></div>
+	<div id="zaloButton"> <a href="http://zalo.me/0938865826" target="_blank" onclick="_gaq.push(['_trackEvent', 'Call To Action', 'Zalo Button', 'Mobile']);"><i></i></a></div>
+	<div id="callNowButton"> <a href="tel:0938865826" onclick="_gaq.push(['_trackEvent', 'Call To Action', 'Call Button', 'Mobile']);"><i></i></a></div>
+	</div>
+ 	<!-- /.block-call -->
 
 	<a id="return-to-top" class="td-scroll-up" href="javascript:void(0)">
   		<i class="fa fa-angle-up" aria-hidden="true"></i>

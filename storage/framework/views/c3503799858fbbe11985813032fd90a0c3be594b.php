@@ -27,6 +27,13 @@
         <div class="panel-body">
           <form class="form-inline" id="searchForm" role="form" method="GET" action="<?php echo e(route('product.index')); ?>">            
             <div class="form-group">              
+              <select class="form-control" name="status" id="status">                  
+                <option value="" >--Trạng thái duyệt--</option>
+                  <option value="1" <?php echo e($arrSearch['status'] == 1 ? "selected" : ""); ?>>Đã duyệt</option>
+                  <option value="2" <?php echo e($arrSearch['status'] == 2 ? "selected" : ""); ?>>Chưa duyệt</option>
+              </select>
+            </div>
+            <div class="form-group">              
               <select class="form-control" name="type" id="type">
                   <option value="">--Loại--</option>
                   <option value="1" <?php echo e($arrSearch['type'] == 1 ? "selected" : ""); ?>>Bán</option>
@@ -145,7 +152,8 @@
                 </td>
                 <?php endif; ?>
                 <th width="100px">Hình ảnh</th>
-                <th style="text-align:center">Thông tin sản phẩm</th>
+                <th style="text-align:left">Thông tin sản phẩm</th>
+                <th width="120px">DUYỆT</th>
                 <th width="120px">Trạng thái</th>                              
                 <th width="1%;white-space:nowrap">Thao tác</th>
               </tr>
@@ -198,6 +206,13 @@
                     </p>
                     
                   </td>
+                  <td>
+                     <?php if($item->status == 1): ?>
+                          <span style="color:blue">ĐÃ DUYỆT</span>
+                          <?php else: ?>
+                          <span style="color:red">CHƯA DUYỆT</span>
+                          <?php endif; ?>
+                  </td>
                   <td>                
                     <?php if($item->type == 1): ?>
                       <?php echo e($item->cart_status == 1 ? "Chưa bán" : "Đã bán"); ?>                  
@@ -209,9 +224,9 @@
                   <td style="white-space:nowrap; text-align:right">
                     <a class="btn btn-default btn-sm" href="<?php echo e(route('chi-tiet', [$item->slug_loai, $item->slug, $item->id] )); ?>" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>
                     <a href="<?php echo e(route( 'product.edit', [ 'id' => $item->id ])); ?>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>                 
-
+                    <?php if(Auth::user()->role == 3): ?>
                     <a onclick="return callDelete('<?php echo e($item->name); ?>','<?php echo e(route( 'product.destroy', [ 'id' => $item->id ])); ?>');" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
-
+                    <?php endif; ?>
                   </td>
                 </tr> 
                 <?php endforeach; ?>
@@ -272,7 +287,7 @@ $(document).ready(function(){
     obj.parent().parent().parent().submit(); 
   });
   
-  $('#estate_type_id, #type, #district_id, #ward_id, #cart_status').change(function(){    
+  $('#estate_type_id, #type, #district_id, #ward_id, #cart_status, #status').change(function(){    
     $('#searchForm').submit();
   });  
   $('#is_hot').change(function(){

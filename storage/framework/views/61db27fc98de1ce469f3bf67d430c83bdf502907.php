@@ -18,7 +18,7 @@
       <div class="box">
 
 <div class="box-header with-border">
-  <h3 class="box-title">Tin ký gửi chưa duyệt ( <?php echo e($kyguiList->count()); ?> )</h3>
+  <h3 class="box-title">Bất động sản chưa duyệt ( <?php echo e($kyguiList->count()); ?> )</h3>
 </div>
 
 <!-- /.box-header -->

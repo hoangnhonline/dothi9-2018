@@ -57,13 +57,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	}
 		
 	</style>
+	<?php echo $settingArr['head']; ?>
+
 </head>
 <body <?php echo e(\Request::route()->getName() == "home" ? 'class=page_home' : ""); ?>>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K6NPFDM"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-	
 	<header id="header" class="header">
 		<!-- <div class="header-register">
 			<div class="container">
@@ -160,7 +157,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 												<select class="selectpicker form-control" data-live-search="true" name="estate_type_id" id="estate_type_id">
 													<option value="">Loại bất động sản</option>
 													<?php foreach($banList as $ban): ?>
-													<option <?php if(isset($estate_type_id) && $estate_type_id == $ban->id): ?> selected <?php endif; ?> class="option-lv1" value="<?php echo e($ban->id); ?>"><?php echo e($ban->name); ?></option>
+													<option data-slug="<?php echo e($ban->slug); ?>" <?php if(isset($estate_type_id) && $estate_type_id == $ban->id): ?> selected <?php endif; ?> class="option-lv1" value="<?php echo e($ban->id); ?>"><?php echo e($ban->name); ?></option>
 													<?php endforeach; ?>
 												</select>
 											</div>	
@@ -168,7 +165,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 												<select class="selectpicker form-control" data-live-search="true" id="city_id" name="city_id">
 													<option value="">Tỉnh/TP</option>
 													<?php foreach($cityList as $city): ?>
-													<option value="<?php echo e($city->id); ?>"><?php echo $city->name; ?></option>
+													<option data-slug="<?php echo e($city->alias); ?>" value="<?php echo e($city->id); ?>" <?php if(isset($city_id) && $city_id == $city->id): ?> selected <?php endif; ?>><?php echo $city->name; ?></option>
 													<?php endforeach; ?>
 												</select>
 											</div>										
@@ -176,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 												<select class="selectpicker form-control" data-live-search="true" id="district_id" name="district_id">
 													<option value="">Quận/Huyện</option>
 													<?php foreach($districtList as $district): ?>
-													<option <?php if(isset($district_id) && $district_id == $district->id): ?> selected <?php endif; ?> value="<?php echo e($district->id); ?>"><?php echo e($district->name); ?></option>
+													<option data-slug="<?php echo e($district->slug); ?>" <?php if(isset($district_id) && $district_id == $district->id): ?> selected <?php endif; ?> value="<?php echo e($district->id); ?>"><?php echo e($district->name); ?></option>
 													<?php endforeach; ?>
 												</select>
 											</div>
@@ -231,7 +228,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 												</select>
 											</div>											
 											<div class="form-group">
-												<button type="submit" id="btnSearch" class="btn btn-success"><i class="fa fa-search"></i> Tìm Kiếm</button>
+												<button type="button" id="btnSearch" class="btn btn-success"><i class="fa fa-search"></i> Tìm Kiếm</button>
 											</div>
 										</div>
 							    	</form>
@@ -240,6 +237,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						</div>
 					</article><!-- /block-box-search -->	
 					<?php endif; ?>
+					<?php if(isset($district_id) && $district_id > 0 && isset($estate_type_id) && $estate_type_id > 0): ?>
+					<?php 
+					$wardList = DB::table('ward')->where('district_id', $district_id)->get();
+					$detailEstate = DB::table('estate_type')->where('id', $estate_type_id)->first();
+					$detailDistrict = DB::table('district')->where('id', $district_id)->first();
+					?>
+					<article class="block-sidebar block-news-sidebar">
+						<div class="block-title-common">
+							<h3><span class="icon-tile"><i class="fa fa-th-list"></i></span> <?php echo e($detailEstate->name); ?> tại <?php echo e($detailDistrict->name); ?></h3>
+						</div>
+						<div class="block-contents">
+							<ul class="block-list-sidebar block-icon1-title">
+								<?php foreach($wardList as $ward): ?>
+								<li><h4><a href="<?php echo e(env('app.url')); ?>/<?php echo e($detailEstate->slug); ?>-<?php echo e($ward->slug); ?>-3-<?php echo e($estate_type_id); ?>-<?php echo e($ward->id); ?>" title="<?php echo e($ward->name); ?>"><?php echo e($ward->name); ?> 
+									<?php 
+									$rs = DB::table('product')->where(['estate_type_id' => $estate_type_id, 'ward_id' => $ward->id, 'status' => 1])->get();
+									if($rs){
+										echo '<span style="color:#37a344">('.count($rs).')';
+									}
+									?>
+								</a></h4></li>
+								<?php endforeach; ?>
+							</ul>							
+						</div>
+					</article><!-- /block-news-sidebar -->
+					<?php endif; ?>
+
 					<article class="block-sidebar block-news-sidebar">
 						<div class="block-title-common">
 							<h3><span class="icon-tile"><i class="fa fa-star"></i></span> Tin xem nhiều</h3>
@@ -327,6 +351,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<?php if(\Request::route()->getName() != "du-an" && !isset($detailPage)): ?>
 	<?php echo $__env->make('frontend.partials.ads', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>	
 	<?php endif; ?>
+	 <div class="ppocta-ft-fix">
+	<div id="messengerButton"> <a href="http://fb.com/msg/bannhahemxehoiquan9" target="_blank" onclick="_gaq.push(['_trackEvent', 'Call To Action', 'Messenger Button', 'Mobile']);"><i></i></a></div>
+	<div id="zaloButton"> <a href="http://zalo.me/0938865826" target="_blank" onclick="_gaq.push(['_trackEvent', 'Call To Action', 'Zalo Button', 'Mobile']);"><i></i></a></div>
+	<div id="callNowButton"> <a href="tel:0938865826" onclick="_gaq.push(['_trackEvent', 'Call To Action', 'Call Button', 'Mobile']);"><i></i></a></div>
+	</div>
+ 	<!-- /.block-call -->
 
 	<a id="return-to-top" class="td-scroll-up" href="javascript:void(0)">
   		<i class="fa fa-angle-up" aria-hidden="true"></i>
@@ -356,6 +386,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 		        }
 		    });		    
+		    $('#city_id').change(function() {
+		        var city_id = $(this).val();
+		        getDistrict(city_id);
+		      });
 		    <?php if(isset($city_id) && $city_id > 0): ?>
 		    var city_id = <?php echo e($city_id); ?>;
 		    $('#city_id').val(city_id);
@@ -435,6 +469,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				pager: true,
 				auto: true,
 				pause: 4000
+			});
+			$('#btnSearch').click(function(){		
+				if($('#estate_type_id').val() == ''){
+					swal({ title: '', text: 'Vui lòng chọn loại bất động sản.', type: 'error' });
+					return false;
+				}	
+				var url = $('#estate_type_id').find(":selected").data('slug');
+				
+				if($('#project_id').val() > 0){
+					url += '-' + $('#project_id').find(":selected").data('slug');
+					location.href="<?php echo e(env('app.url')); ?>/" + url + '-5-' + $('#estate_type_id').val() + '-' + $('#project_id').val();
+					return false;
+				}
+				if($('#street_id').val() > 0){
+					url += '-' + $('#street_id').find(":selected").data('slug');
+					location.href="<?php echo e(env('app.url')); ?>/" + url + '-4-' + $('#estate_type_id').val() + '-' + $('#street_id').val();
+					return false;
+				}
+				if($('#ward_id').val() > 0){
+					url += '-' + $('#ward_id').find(":selected").data('slug');
+					location.href="<?php echo e(env('app.url')); ?>/" + url + '-3-' + $('#estate_type_id').val() + '-' + $('#ward_id').val();
+					return false;
+				}
+				if($('#district_id').val() > 0){
+					url += '-' + $('#district_id').find(":selected").data('slug');
+					location.href="<?php echo e(env('app.url')); ?>/" + url + '-2-' + $('#estate_type_id').val() + '-' + $('#district_id').val();
+					return false;
+				}
+				if($('#city_id').val() > 0){					
+					url += '-' + $('#city_id').find(":selected").data('slug');
+					location.href="<?php echo e(env('app.url')); ?>/" + url + '-1-' + $('#estate_type_id').val() + '-' + $('#city_id').val();
+				}
 			});
 			$('#district_id').change(function(){
 				var district_id = $(this).val();
@@ -563,7 +629,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				});
 			<?php endif; ?>
 		});
-		
+		function getDistrict(city_id) {
+
+	        if(!city_id) {
+	          $('#district_id').empty();
+	          $('#district_id').append('<option value="0">Chọn Quận/Huyện</option>');
+	          return;
+	        }
+
+	        $.ajax({
+	          url: "<?php echo e(route('get-district')); ?>",
+	          method: "POST",
+	          data : {
+	            id: city_id
+	          },
+	          success : function(list_ward){          	
+	            $('#district_id').empty();
+	            $('#district_id').append('<option value="0">Chọn Quận/Huyện</option>');
+
+	            for(i in list_ward) {
+	              $('#district_id').append('<option data-slug="'+list_ward[i].slug +'"  value="'+list_ward[i].id+'">'+list_ward[i].name+'</option>');
+	            }
+	            $('.selectpicker').selectpicker('refresh');
+	          }
+	        });
+	      }   
 	</script>
 
 </body>

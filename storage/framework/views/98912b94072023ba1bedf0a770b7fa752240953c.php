@@ -20,7 +20,7 @@
 									<select class="selectpicker form-control" data-live-search="true" name="estate_type_id" id="estate_type_id">
 										<option selected="selected" value="">Loại bất động sản</option>
 										<?php foreach($banList as $ban): ?>
-										<option value="<?php echo e($ban->id); ?>"><?php echo $ban->name; ?></option>
+										<option data-slug="<?php echo e($ban->slug); ?>" value="<?php echo e($ban->id); ?>"><?php echo $ban->name; ?></option>
 										<?php endforeach; ?>
 									</select>
 								</div>
@@ -30,7 +30,7 @@
 									<select class="selectpicker form-control" data-live-search="true" id="city_id" name="city_id">
 										<option value="">Tỉnh/TP</option>
 										<?php foreach($cityList as $city): ?>
-										<option value="<?php echo e($city->id); ?>"><?php echo $city->name; ?></option>
+										<option data-slug="<?php echo e($city->alias); ?>" value="<?php echo e($city->id); ?>"><?php echo $city->name; ?></option>
 										<?php endforeach; ?>
 									</select>
 								</div>
@@ -40,7 +40,7 @@
 									<select class="selectpicker form-control" data-live-search="true" id="district_id" name="district_id">
 										<option value="">Quận/Huyện</option>
 										<?php foreach($districtList as $district): ?>
-										<option value="<?php echo e($district->id); ?>"><?php echo $district->name; ?></option>
+										<option data-slug="<?php echo e($district->slug); ?>" value="<?php echo e($district->id); ?>"><?php echo $district->name; ?></option>
 										<?php endforeach; ?>
 									</select>
 								</div>
@@ -117,7 +117,7 @@
 							</div>								
 							<div class="col-xs-2 col-button">
 								<div class="form-group">
-									<button type="submit" id="btnSearch" class="btn btn-success btn-search-home"><i class="fa fa-search"></i> Tìm Kiếm</button>
+									<button type="button" id="btnSearch" class="btn btn-success btn-search-home"><i class="fa fa-search"></i> Tìm Kiếm</button>
 								</div>
 							</div>
 						</div>
@@ -151,12 +151,7 @@
 				}
 			});
 		});
-		$('#btnSearch').click(function(){		
-			if($('#estate_type_id').val() == ''){
-				swal({ title: '', text: 'Vui lòng chọn loại bất động sản.', type: 'error' });
-				return false;
-			}		
-		});
+		
 		$('#tab-search li a').click(function(){
 			obj = $(this);
 			var type = obj.data('type');

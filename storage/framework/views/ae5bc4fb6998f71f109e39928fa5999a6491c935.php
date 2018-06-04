@@ -39,6 +39,7 @@
           <?php endif; ?>
         </ul>
       </li>
+      <?php if(Auth::user()->role > 1): ?>
       <li <?php echo e(in_array(\Request::route()->getName(), ['pro-content.index', 'pro-content.create', 'pro-content.edit', 'landing-projects.index', 'landing-projects.create', 'landing-projects.edit']) ? "class=active" : ""); ?>>
         <a href="<?php echo e(route('landing-projects.index')); ?>">
           <i class="fa fa-pencil-square-o"></i> 
@@ -51,6 +52,7 @@
           <span>Tin ký gửi</span>         
         </a>       
       </li>
+      <?php endif; ?>
       <li <?php echo e(in_array(\Request::route()->getName(), ['cart.create', 'cart.edit', 'cart.index','cart-product.create', 'cart-product.edit', 'cart-product.index']) ? "class=active" : ""); ?>>
         <a href="<?php echo e(route('cart.index')); ?>">
           <i class="fa fa-pencil-square-o"></i> 
@@ -80,7 +82,7 @@
         </a>       
       </li>
       <?php endif; ?>
-      
+      <?php if(Auth::user()->role > 1): ?>
       <li class="treeview <?php echo e(in_array(\Request::route()->getName(), ['pages.index', 'pages.create']) ? 'active' : ''); ?>">
         <a href="#">
           <i class="fa fa-twitch"></i> 
@@ -118,7 +120,7 @@
             <span>Tags / Tiện ích</span>          
           </a>       
         </li>
-        
+        <?php endif; ?>
       <?php if(Auth::user()->role > 1): ?>
       <li <?php echo e(in_array(\Request::route()->getName(), ['newsletter.edit', 'newsletter.index']) ? "class=active" : ""); ?>>
         <a href="<?php echo e(route('newsletter.index')); ?>">

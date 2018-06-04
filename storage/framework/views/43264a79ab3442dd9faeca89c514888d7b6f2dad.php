@@ -15,7 +15,7 @@
   <!-- Main content -->
   <section class="content">
     <a class="btn btn-default btn-sm" href="<?php echo e(route('cate.index')); ?>" style="margin-bottom:5px">Quay lại</a>
-    <a class="btn btn-primary btn-sm" href="<?php echo e(route('cate', [$detail->cateParent->slug, $detail->slug] )); ?>" target="_blank" style="margin-top:-6px"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>
+    <a class="btn btn-primary btn-sm" href="<?php echo e(route('danh-muc-con', [$detail->estateType->slug, $detail->slug] )); ?>" target="_blank" style="margin-top:-6px"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>
     <div class="row">
       <!-- left column -->
 
@@ -91,7 +91,7 @@
               <div class="form-group" style="margin-top:10px">  
                 <label class="col-md-3 row">Ảnh đại diện (265 x 150px)</label>    
                 <div class="col-md-9">
-                    <img id="thumbnail_image" src="<?php echo e($detail->image_url ? Helper::showImage($detail->image_url ) : URL::asset('public/admin/dist/img/img.png')); ?>" class="img-thumbnail" width="145" height="85">
+                    <img id="thumbnail_image" src="<?php echo e($detail->image_url ? Helper::showImage($detail->image_url ) : URL::asset('backend/dist/img/img.png')); ?>" class="img-thumbnail" width="145" height="85">
                     
                     <input type="file" id="file-image" style="display:none" />
                  

@@ -43,6 +43,8 @@
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js') }}"></script>
 		<script src="https://oss.maxcdn.com/libs/respond.<?php echo e(URL::asset('assets/js/1.4.2/respond.min.js')); ?>"></script>
 	<![endif]-->
+	<?php echo $settingArr['head']; ?>
+
 </head>
 <body>
 	
@@ -114,7 +116,12 @@
 
 	<?php echo $__env->yieldContent('content'); ?>	
 
-	<?php echo $__env->make('frontend.home.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>	
+	<?php echo $__env->make('frontend.home.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<div class="ppocta-ft-fix">
+	<div id="messengerButton"> <a href="http://fb.com/msg/bannhahemxehoiquan9" target="_blank" onclick="_gaq.push(['_trackEvent', 'Call To Action', 'Messenger Button', 'Mobile']);"><i></i></a></div>
+	<div id="zaloButton"> <a href="http://zalo.me/0938865826" target="_blank" onclick="_gaq.push(['_trackEvent', 'Call To Action', 'Zalo Button', 'Mobile']);"><i></i></a></div>
+	<div id="callNowButton"> <a href="tel:0938865826" onclick="_gaq.push(['_trackEvent', 'Call To Action', 'Call Button', 'Mobile']);"><i></i></a></div>
+</div><!-- /.block-call -->	
 
 	<a id="return-to-top" class="td-scroll-up" href="javascript:void(0)">
   		<i class="fa fa-angle-up" aria-hidden="true"></i>

@@ -54,7 +54,7 @@
 <input type="hidden" id="editor" value="description">
                   <!-- Tab panes -->
                   <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="home">
+                    <div role="tabpanel" class="tab-pane active" id="home">                     
                       <div class="form-group col-md-4  pleft-5">
                           <label for="email">Loại <span class="red-star">*</span></label>
                             <select class="form-control" name="type" id="type">
@@ -106,6 +106,8 @@
                         </div>
                         <div class="form-group col-md-6 none-padding">
                           <label for="email">Phường <span class="red-star">*</span></label>
+                          <?php echo e($detail->ward_id); ?>
+
                           <select class="form-control" name="ward_id" id="ward_id">
                             <option value="">--Chọn--</option>
                             <?php foreach( $wardList as $value ): ?>
@@ -261,7 +263,7 @@
                             </div>
                         </div>
                         
-                        <?php if($detail->status == 2): ?>
+                        <?php if($detail->status == 2 && Auth::user()->role == 3): ?>
                         <div class="form-group col-md-4 none-padding" >
                             <div class="checkbox">
                               <label>
@@ -783,7 +785,8 @@ $(document).on('keypress', '#name_search', function(e){
             data : {
               mod : 'ward',
               col : 'district_id',
-              id : district_id
+              id : district_id,
+              _token : $('meta[name="csrf-token"]').attr('content')
             },
             type : 'POST',
             dataType : 'html',
@@ -797,7 +800,8 @@ $(document).on('keypress', '#name_search', function(e){
             data : {
               mod : 'street',
               col : 'district_id',
-              id : district_id
+              id : district_id,
+              _token : $('meta[name="csrf-token"]').attr('content')
             },
             type : 'POST',
             dataType : 'html',
@@ -811,7 +815,8 @@ $(document).on('keypress', '#name_search', function(e){
             data : {
               mod : 'project',
               col : 'district_id',
-              id : district_id
+              id : district_id,
+              _token : $('meta[name="csrf-token"]').attr('content')
             },
             type : 'POST',
             dataType : 'html',

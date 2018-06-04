@@ -68,6 +68,7 @@
             <?php if( $items->count() > 0 ): ?>
               <?php $i = 0; ?>
               <?php foreach( $items as $item ): ?>
+              
                 <?php $i ++; ?>
               <tr id="row-<?php echo e($item->id); ?>">
                 <td><span class="order"><?php echo e($i); ?></span></td>      
@@ -81,7 +82,12 @@
 
                   <p><?php echo e($item->description); ?></p>
                 </td>
-                <td><?php echo e($item->account->full_name); ?></td>
+                <td>
+                  <?php if($item->account): ?>
+                  <?php echo e($item->account->full_name); ?>
+
+                  <?php endif; ?>
+                </td>
                 <td style="white-space:nowrap">   
                 
                   <a class="btn btn-default btn-sm" href="<?php echo e(route('danh-muc', $item->slug )); ?>" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>               

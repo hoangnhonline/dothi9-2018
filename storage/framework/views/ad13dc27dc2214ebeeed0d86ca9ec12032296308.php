@@ -74,6 +74,10 @@
                 <div class="form-group">
                   <label>Code google analystic </label>
                   <input type="text" class="form-control" name="google_analystic" id="google_analystic" value="<?php echo e($settingArr['google_analystic']); ?>">
+                </div> 
+                <div class="form-group">
+                  <label>Custom HEAD </label>
+                  <textarea class="form-control" rows="15" name="head" id="head"><?php echo e($settingArr['head']); ?></textarea>
                 </div>   
                 <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
                   <label class="col-md-3 row">Logo </label>    

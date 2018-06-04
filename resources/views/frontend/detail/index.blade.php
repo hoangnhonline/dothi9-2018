@@ -192,7 +192,25 @@
 	</article><!-- /block-news-with-region -->
 	@endif
 </section><!-- /block-site-left -->
-
+<style>
+#slide-detail .bx-wrapper {
+height: 500px;
+overflow: hidden;
+background-color:#000;
+}
+#slide-detail .bx-wrapper img {
+height: 500px;
+object-fit: contain;
+}
+#bx-pager-detail li{
+		margin-top:2px;
+}
+#bx-pager-detail img{
+	height : 92px;
+		object-fit: contain;
+	
+}
+</style>
 @endsection
 @section('javascript_page')
 <script>
@@ -244,8 +262,7 @@
     	controls: false,
         pagerCustom: '.pro-thumb-img',
         nextText: '<i class="fa fa-angle-right"></i>',
-        prevText: '<i class="fa fa-angle-left"></i>',
-        adaptiveHeight: true
+        prevText: '<i class="fa fa-angle-left"></i>',        
     });
 
     $(".pro-thumb-img").bxSlider({
@@ -269,16 +286,14 @@
 	$('.bxslider').bxSlider({
 		pagerCustom: '#bx-pager',
 		pager: true,
-		adaptiveHeight: true
+	
 	});
 	$('.slide-detail').bxSlider({
 		pagerCustom: '#bx-pager-detail',
-		pager: true,
-		adaptiveHeight: true,
+		pager: true,		
 		auto : true,
-		pause : 4000
-	});
-
+		pause : 4000,
+	});	
 });
   
 </script>

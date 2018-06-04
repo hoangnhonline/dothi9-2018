@@ -10,11 +10,13 @@
             <ul class="level0 submenu">
                 <?php foreach($banList as $ban): ?>
                 <li class="level1"><a href="<?php echo e(route('danh-muc', $ban->slug )); ?>"><?php echo $ban->name; ?></a>
-                <?php if($ban->id == 6): ?>
+                <?php if($ban->cate->count() > 0): ?>
                 <ul class="level0 submenu">
-                   
-                    <li class="level1"><a href="<?php echo e(route('danh-muc-con', [$ban->slug, 'ban-dat-dong-nai'] )); ?>">Bán đất Đồng Nai</a></li>                           
-                   
+                   <?php foreach($ban->cate as $cate): ?>
+                   <?php if($cate->status == 1): ?>
+                    <li class="level1"><a href="<?php echo e(route('danh-muc-con', [$ban->slug, $cate->slug] )); ?>"><?php echo $cate->name; ?></a></li>                    
+                    <?php endif; ?>       
+                   <?php endforeach; ?>
                 </ul>
                 <?php endif; ?>
                 </li>                         
@@ -24,7 +26,15 @@
         <li class="level0 <?php echo e((in_array(\Request::route()->getName(), ['cho-thue', 'danh-muc', 'chi-tiet']) && isset($type) && $type == 2) ? "active" : ""); ?>"><a href="<?php echo e(route('cho-thue')); ?>">BĐS cho thuê</a>
             <ul class="level0 submenu">
                 <?php foreach($thueList as $thue): ?>
-                <li class="level1"><a href="<?php echo e(route('danh-muc', $thue->slug )); ?>"><?php echo $thue->name; ?></a></li>                           
+                <li class="level1"><a href="<?php echo e(route('danh-muc', $thue->slug )); ?>"><?php echo $thue->name; ?></a></li><?php if($ban->cate->count() > 0): ?>
+                <ul class="level0 submenu">
+                   <?php foreach($thue->cate as $cate): ?>
+                   <?php if($cate->status == 1): ?>
+                    <li class="level1"><a href="<?php echo e(route('danh-muc-con', [$thue->slug, $cate->slug] )); ?>"><?php echo $cate->name; ?></a></li>                    
+                    <?php endif; ?>       
+                   <?php endforeach; ?>
+                </ul>
+                <?php endif; ?>                          
                 <?php endforeach; ?>
             </ul>
         </li><!-- END MENU BLOG -->
