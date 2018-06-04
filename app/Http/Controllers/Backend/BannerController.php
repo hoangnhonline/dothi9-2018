@@ -113,8 +113,6 @@ class BannerController extends Controller
             'slug.required' => 'Bạn chưa nhập slug',
         ]);
         */
-        $dataArr['status'] = isset($dataArr['status'])  ? 1 : 0;
-        
         if($dataArr['image_url'] && $dataArr['image_name']){
             
             $tmp = explode('/', $dataArr['image_url']);
@@ -187,8 +185,7 @@ class BannerController extends Controller
         $dataArr = $request->all();
         
         
-        $dataArr['updated_user'] = Auth::user()->id;
-        $dataArr['status'] = isset($dataArr['status'])  ? 1 : 0;
+        $dataArr['updated_user'] = Auth::user()->id;        
 
         if($dataArr['image_url'] && $dataArr['image_name']){
             
