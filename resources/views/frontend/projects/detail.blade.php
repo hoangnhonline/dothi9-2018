@@ -206,7 +206,7 @@
 				<div class="row">
 					<div class="col-sm-6 col-xs-12">
 						<img class="project-logo-contact" src="{{ $detail->logo_url ? Helper::showImage($detail->logo_url) : URL::asset('backend/dist/img/no-image.jpg') }}" alt="{{ $detail->name }}">
-						<h3 class="page-title-child">CÔNG TY TNHH SẢN XUẤT XÂY DỰNG THƯƠNG MẠI PHÚ LONG</h3>
+						<h3 class="page-title-child"><a href="/">DOTHI9.COM</a></h3>
 						<div class="block-table-nobor-tab">
 							<table class="table table-no-border">
 								<tr>
@@ -214,21 +214,21 @@
 										<label>Địa chỉ :</label>
 									</td>
 									<td>
-										185A Tây Hòa, Phường Phước Long A, Quận 9, Tp. Hồ Chí Minh.
+										510 Võ Văn Kiệt, Phường Cầu Kho, Quận 1, Tp.HCM.
 									</td>
 								</tr>
 								<tr>
 									<td>
 										<label>Phone :</label>
 									</td>
-									<td>0902.950.950</td>
+									<td>0938.865.826</td>
 								</tr>
 								<tr>
 									<td>
 										<label>Email :</label>
 									</td>
 									<td>
-										<a href="mailto:nguyenlong0098@gmail.com?subject=feedback">nguyenlong0098@gmail.com</a>
+										<a href="mailto:dangtrunghieu.bds@gmail.com?subject=feedback">dangtrunghieu.bds@gmail.com</a>
 									</td>
 								</tr>
 							</table>
@@ -254,28 +254,28 @@
 							<input type="hidden" name="type" value="2">
 							<input type="hidden" name="return_url" value="{{ url()->current() }}">
                   			<div class="form-group group">
-                  				<input type="text" name="full_name" >
+                  				<input type="text" name="full_name" value="{{ old('full_name') }}">
                   				<span class="highlight"></span>
                   				<span class="bar"></span>
 								<label>Họ và Tên *</label>
                   			</div><!-- /form-group -->
                   			<div class="form-group group">
-                  				<input type="text" name="phone">
+                  				<input type="text" name="phone" value="{{ old('phone') }}">
                   				<span class="highlight"></span>
                   				<span class="bar"></span>
 								<label>Điện thoại *</label>
                   			</div><!-- /form-group -->
                   			<div class="form-group group">
-                  				<input type="text" name="email">
+                  				<input type="text" name="email" value="{{ old('email') }}">
                   				<span class="highlight"></span>
                   				<span class="bar"></span>
-								<label>Email *</label>
+								<label>Email</label>
                   			</div><!-- /form-group -->
                   			<div class="form-group group">
-                  				<textarea rows="5" name="content" placeholder=""></textarea>
+                  				<textarea rows="5" name="content" placeholder="">{{ old('content') }}</textarea>
                   				<span class="highlight"></span>
                   				<span class="bar"></span>
-                  				<label>Nội Dung *</label>
+                  				<label>Nội Dung</label>
                   			</div><!-- /form-group -->
                   			<div class="form-group">
 								<button type="submit" class="btn btn-primary" id="btnSend"><i class="fa fa-envelope-o"></i> Gửi Email</button>

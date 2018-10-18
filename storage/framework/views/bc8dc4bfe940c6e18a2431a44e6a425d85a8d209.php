@@ -74,8 +74,9 @@
               <?php foreach( $items as $item ): ?>
                 <?php $i ++; ?>
               <tr id="row-<?php echo e($item->id); ?>">
-                <td><span class="order"><?php echo e($i); ?></span></td>                       
-                <td><?php echo e($item->project->name); ?></td>
+                <td><span class="order"><?php echo e($i); ?></span></td>  
+				
+                <td><?php echo e($item->project ? $item->project->name : ''); ?></td>
                 <td>                  
                   <?php echo e($item->gender == 1 ? "Anh " : "Chị "); ?>
 

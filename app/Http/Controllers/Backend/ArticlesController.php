@@ -32,6 +32,7 @@ class ArticlesController extends Controller
         if( $cate_id > 0){
             $query->where('cate_id', $cate_id);
         }
+		$query->where('cate_id','<', 999);
         // check editor
         if( Auth::user()->role < 3 ){
             $query->where('created_user', Auth::user()->id);

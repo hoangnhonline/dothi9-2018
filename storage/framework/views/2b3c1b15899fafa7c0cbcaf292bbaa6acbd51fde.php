@@ -15,7 +15,7 @@
   <!-- Main content -->
   <section class="content">
     <a class="btn btn-default btn-sm" href="<?php echo e(route('landing-projects.index')); ?>" style="margin-bottom:5px">Quay lại</a>
-    <a class="btn btn-primary btn-sm" href="<?php echo e(route('news-detail', [$detail->slug, $detail->id ])); ?>" target="_blank" style="margin-top:-6px"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>
+    <a class="btn btn-primary btn-sm" href="<?php echo e(route('detail-project', [$detail->slug])); ?>" target="_blank" style="margin-top:-6px"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>
     <form role="form" method="POST" action="<?php echo e(route('landing-projects.update')); ?>">
     <div class="row">
       <!-- left column -->

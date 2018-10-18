@@ -695,15 +695,7 @@ $(document).on('click', '#btnSaveTagAjax', function(){
       
       var editor3 = CKEDITOR.replace( 'description',{
           language : 'vi',
-          height : 300,
-          toolbarGroups : [
-            
-            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
-            { name: 'links', groups: [ 'links' ] },           
-            '/',
-            
-          ]
+          height : 300          
       });
       $('#btnUploadImage').click(function(){        
         $('#file-image').click();

@@ -59,8 +59,58 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	</style>
 	<?php echo $settingArr['head']; ?>
 
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NBP2W4X');</script>
+<!-- End Google Tag Manager -->
+<script>
+  gtag('config', 'AW-802066843/4o-8CKHfjocBEJujuv4C', {
+    'phone_conversion_number': '0938865826'
+  });
+</script>
 </head>
+
 <body <?php echo e(\Request::route()->getName() == "home" ? 'class=page_home' : ""); ?>>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NBP2W4X"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- Google Code for Xem Trang Dothi9 M&#7899;i Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 880998351;
+var google_conversion_label = "7nnXCIuXyYYBEM_vi6QD";
+var google_remarketing_only = false;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/880998351/?label=7nnXCIuXyYYBEM_vi6QD&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<!-- Google Code dành cho Thẻ tiếp thị lại -->
+<!--------------------------------------------------
+Không thể liên kết thẻ tiếp thị lại với thông tin nhận dạng cá nhân hay đặt thẻ tiếp thị lại trên các trang có liên quan đến danh mục nhạy cảm. Xem thêm thông tin và hướng dẫn về cách thiết lập thẻ trên: http://google.com/ads/remarketingsetup
+--------------------------------------------------->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 880998351;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/880998351/?guid=ON&amp;script=0"/>
+</div>
+</noscript>
 	<header id="header" class="header">
 		<!-- <div class="header-register">
 			<div class="container">
@@ -91,7 +141,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	                </a>
 	            </div>
 	            <?php 
-				$bannerArr = DB::table('banner')->where(['object_id' => 4, 'object_type' => 3])->orderBy('display_order', 'asc')->get();
+				$bannerArr = DB::table('banner')->where(['object_id' => 4, 'object_type' => 3, 'status' => 1])->orderBy('display_order', 'asc')->get();
 				?>	           
 	            <div class="banner_adv" id="Banner_tet" style="display: block;">	
 	            <?php $i = 0; ?>
@@ -290,7 +340,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 								<?php if($landingList): ?>
 									<?php foreach($landingList as $value): ?>
 									<div class="large-item">
-		                                <a href="<?php echo e(route('detail-project', [$value->slug])); ?>" title="<?php echo $value->name; ?>"><img src="<?php echo e($value->image_url ? Helper::showImageThumb($value->image_url, 3, '306x194') : URL::asset('backend/dist/img/no-image.jpg')); ?>" alt="" /></a>
+		                                <a href="<?php echo e(route('detail-project', [$value->slug])); ?>" title="<?php echo $value->name; ?>"><img src="<?php echo e($value->image_url ? Helper::showImage($value->image_url) : URL::asset('backend/dist/img/no-image.jpg')); ?>" alt="<?php echo $value->name; ?>" /></a>
 		                                <h4><a href="<?php echo e(route('detail-project', [$value->slug])); ?>" title="<?php echo $value->name; ?>"><?php echo $value->name; ?></a></h4>
 		                                <p><?php echo e($value->address); ?></p>
 		                            </div>
@@ -302,7 +352,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									<?php foreach($landing2List as $value): ?>
 									<div class="item">
 										<div class="item-child">
-				                            <a data-slide-index="0" class="slide_title" onclick="location.href='<?php echo e(route('detail-project', [$value->slug])); ?>'" href="<?php echo e(route('detail-project', [$value->slug])); ?>" title=""><img class="avatar" src="<?php echo e($value->image_url ? Helper::showImageThumb($value->image_url, 3, '308x190') : URL::asset('backend/dist/img/no-image.jpg')); ?>" alt="" /></a>
+				                            <a data-slide-index="0" class="slide_title" onclick="location.href='<?php echo e(route('detail-project', [$value->slug])); ?>'" href="<?php echo e(route('detail-project', [$value->slug])); ?>" title=""><img class="avatar" src="<?php echo e($value->image_url ? Helper::showImage($value->image_url) : URL::asset('backend/dist/img/no-image.jpg')); ?>" alt="<?php echo $value->name; ?>" /></a>
 				                            <div class="slide_info">
 				                                <a  onclick="location.href='<?php echo e(route('detail-project', [$value->slug])); ?>'" href="<?php echo e(route('detail-project', [$value->slug])); ?>" title=""><?php echo e($value->name); ?></a>
 				                                <p><?php echo e($value->address); ?></p>
@@ -352,7 +402,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	<?php echo $__env->make('frontend.partials.ads', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>	
 	<?php endif; ?>
 	 <div class="ppocta-ft-fix">
-	<div id="messengerButton"> <a href="http://fb.com/msg/bannhahemxehoiquan9" target="_blank" onclick="_gaq.push(['_trackEvent', 'Call To Action', 'Messenger Button', 'Mobile']);"><i></i></a></div>
+	<div id="messengerButton"> <a href="https://m.me/201501930545442" target="_blank" onclick="_gaq.push(['_trackEvent', 'Call To Action', 'Messenger Button', 'Mobile']);"><i></i></a></div>
 	<div id="zaloButton"> <a href="http://zalo.me/0938865826" target="_blank" onclick="_gaq.push(['_trackEvent', 'Call To Action', 'Zalo Button', 'Mobile']);"><i></i></a></div>
 	<div id="callNowButton"> <a href="tel:0938865826" onclick="_gaq.push(['_trackEvent', 'Call To Action', 'Call Button', 'Mobile']);"><i></i></a></div>
 	</div>
@@ -379,7 +429,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	<script src="<?php echo e(URL::asset('backend/dist/js/sweetalert2.min.js')); ?>"></script>
 	<script src="<?php echo e(URL::asset('assets/js/common.js')); ?>"></script>
 	<?php echo $__env->yieldContent('javascript_page'); ?>
+	<script type='text/javascript'>
+    var checkCtrl = false;
+	$('*').keydown(function(e) {
+        if (e.keyCode == '17') {
+            checkCtrl = false;
+        }
+    }).keyup(function(ev) {
+        if (ev.keyCode == '17') {
+            checkCtrl = false;
+        }
+    }).keydown(function(event) {
+        if (checkCtrl) {
+            if (event.keyCode == '85') {
+                return false;
+            }
+        }
+    })
+</script>
 	<script type="text/javascript">
+	
 		$(document).ready(function(){
 			$.ajaxSetup({
 		        headers: {

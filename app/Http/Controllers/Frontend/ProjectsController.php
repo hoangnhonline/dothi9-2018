@@ -38,21 +38,19 @@ class ProjectsController extends Controller
         $this->validate($request,[
             'full_name' => 'required',
             'phone' => 'required',
-            'email' => 'email|required',
-            'content' => 'required'
+            'email' => 'email'  
         ],
         [            
             'full_name.required' => 'Bạn chưa nhập họ và tên.',
-            'email.required' => 'Bạn chưa nhập email.',
             'email.email' => 'Địa chỉ email không hợp lệ.',
-            'phone.required' => 'Bạn chưa nhập số điện thoại.',
-            'content.required' => 'Bạn chưa nhập nội dung.'            
+            'phone.required' => 'Bạn chưa nhập số điện thoại.' 
         ]); 
 
         $rs = Contact::create($dataArr);
         if($rs->id > 0){
             $projectsDetail = LandingProjects::find($dataArr['project_id']);
-            Mail::send('frontend.projects.email',
+            /*
+			Mail::send('frontend.projects.email',
                 [
                     'projectsDetail'          => $projectsDetail,
                     'dataArr'             => $dataArr
@@ -63,6 +61,7 @@ class ProjectsController extends Controller
                     $message->from('web.0917492306@gmail.com', 'Admin Website');
                     $message->sender('web.0917492306@gmail.com', 'Admin Website');
             });
+			*/
         }
         Session::flash('message', 'Gửi liên hệ thành công.');
 

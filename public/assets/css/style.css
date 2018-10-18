@@ -58,6 +58,16 @@ body {
     line-height: 1.5;
     outline: none;
 }
+<style type='text/css'>
+    body {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+    }
+</style>
 a { color: #313131; cursor: pointer; }
 a:hover,
 a:focus {
@@ -2973,4 +2983,17 @@ h3.page-title-child {
     height: 50px;
     background: url(http://blog.myroom.vn/wp-content/uploads/2018/04/callbutton.png) center center no-repeat #009900;
 }
+}
+.video-responsive{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+}
+.video-responsive iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
 }
