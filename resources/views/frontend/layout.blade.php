@@ -17,7 +17,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 	<title>@yield('title')</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    @if(in_array(\Request::route()->getName(), ['news-detail', 'chi-tiet']) && isset($noindex) && $noindex == 1)
+    <meta name="robots" content="noindex"/>
+    @else    
     <meta name="robots" content="index,follow"/>
+    @endif
     <meta http-equiv="content-language" content="vi"/>
     <meta name="description" content="@yield('site_description')"/>
     <meta name="keywords" content="@yield('site_keywords')"/>

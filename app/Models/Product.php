@@ -66,7 +66,8 @@ class Product extends Model  {
                             'created_user',
                             'updated_user',
                             'cate_id',
-                            'kygui'
+                            'kygui',
+                            'noindex'
                         ];
 
     public static function productTag( $id )

@@ -96,7 +96,7 @@
           <li {{ in_array(\Request::route()->getName(), ['pages.create']) ? "class=active" : "" }}><a href="{{ route('pages.create') }}"><i class="fa fa-circle-o"></i> Thêm trang</a></li>          
         </ul>
       </li>
-      
+       @endif
       <li class="treeview {{ in_array(\Request::route()->getName(), ['articles.index', 'articles.create', 'articles.edit','articles-cate.create', 'articles-cate.index', 'articles-cate.edit']) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-pencil-square-o"></i> 
@@ -120,7 +120,7 @@
             <span>Tags / Tiện ích</span>          
           </a>       
         </li>
-        @endif
+       
       @if(Auth::user()->role > 1)
       <li {{ in_array(\Request::route()->getName(), ['newsletter.edit', 'newsletter.index']) ? "class=active" : "" }}>
         <a href="{{ route('newsletter.index') }}">
@@ -161,6 +161,12 @@
             <a href="{{ route('custom-link.index', ['block_id' => 2 ]) }}">
               <i class="fa fa-circle-o"></i>
               <span>Link Footer</span>         
+            </a>       
+          </li>
+          <li {{ (in_array(\Request::route()->getName(), ['custom-link.edit', 'custom-link.index', 'custom-link.create']) && isset($block_id) && $block_id == 3 )? "class=active" : "" }}>
+            <a href="{{ route('custom-link.index', ['block_id' => 3 ]) }}">
+              <i class="fa fa-circle-o"></i>
+              <span>Menu ngang Footer</span>         
             </a>       
           </li>
           <li {{ \Request::route()->getName() == "info-seo.index" ? "class=active" : "" }}><a href="{{ route('info-seo.index') }}"><i class="fa fa-circle-o"></i> Cài đặt SEO</a></li>

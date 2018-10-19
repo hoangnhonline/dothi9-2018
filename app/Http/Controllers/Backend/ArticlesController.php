@@ -145,7 +145,8 @@ class ArticlesController extends Controller
 
         $dataArr['updated_user'] = Auth::user()->id;
         
-        $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;  
+        $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0; 
+        $dataArr['noindex'] = isset($dataArr['noindex']) ? 1 : 0;  
 
         $rs = Articles::create($dataArr);
 
@@ -310,6 +311,7 @@ class ArticlesController extends Controller
 
         $dataArr['updated_user'] = Auth::user()->id;
         $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;  
+        $dataArr['noindex'] = isset($dataArr['noindex']) ? 1 : 0;  
         //$dataArr['status'] = isset($dataArr['status']) ? 1 : 0;  
         $model = Articles::find($dataArr['id']);
 

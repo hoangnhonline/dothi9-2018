@@ -1,13 +1,11 @@
 <footer class="footer">
 	<div class="block-menu-bottom">
         <ul class="container">
-            <li><a href="#" rel="nofollow">Giới thiệu</a></li>
-            <li><a href="#" rel="nofollow">Hướng dẫn sử dụng</a></li>
-            <li><a href="#" rel="nofollow">Quy định</a></li>
-            <li><a href="#" rel="nofollow">Liên hệ</a></li>
-            
-            <li><a href="#" rel="nofollow">Điều khoản thỏa thuận</a></li>
-            <li><a href="#" rel="nofollow">Báo giá</a></li>
+            @if($footerLinkNgang)
+                @foreach($footerLinkNgang as $link)
+                <li><a href="{{ $link->link_url }}"  title="{!! $link->link_text !!}">{!! $link->link_text !!}</a></li>
+                @endforeach
+            @endif            
         </ul>
     </div>
     <div class="container">
@@ -31,7 +29,7 @@
 					<li><a href="{{ $link->link_url }}" title="{!! $link->link_text !!}">{!! $link->link_text !!}</a></li>
 					@endforeach
 					@endif
-                </ul>s
+                </ul>
             </div>
     	</div>
     </div>

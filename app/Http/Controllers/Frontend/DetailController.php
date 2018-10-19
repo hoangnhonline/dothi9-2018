@@ -89,6 +89,7 @@ class DetailController extends Controller
         $direction_id = $detail->direction_id;
         $city_id = $detail->city_id;
         $tienIch = Product::productTienIchName($detail->id);
+        $noindex = $detail->noindex;
         return view('frontend.detail.index', compact('detail', 'rsLoai', 'hinhArr', 'productArr', 'seo', 'socialImage', 'otherList', 'tagSelected',
             'type',
             'estate_type_id',
@@ -101,7 +102,8 @@ class DetailController extends Controller
             'project_id',
             'price_id',
             'tienIch',
-            'city_id'     
+            'city_id',
+            'noindex'    
             ));
     }
     public function tagDetail(Request $request){

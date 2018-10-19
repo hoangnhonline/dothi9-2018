@@ -291,6 +291,7 @@ class ProductController extends Controller
         $dataArr['alias'] = Helper::stripUnicode($dataArr['title']);
         $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;  
         $dataArr['status'] = Auth::user()->role == 3 ? 1 : 2;
+        $dataArr['noindex'] = isset($dataArr['noindex']) ? 1 : 0;  
         $dataArr['created_user'] = Auth::user()->id;
         $dataArr['updated_user'] = Auth::user()->id;      
         $dataArr['city_id'] = 1;       
@@ -548,6 +549,9 @@ class ProductController extends Controller
         $dataArr['alias'] = Helper::stripUnicode($dataArr['title']);
         $dataArr['city_id'] = 1;
         $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;  
+        
+        $dataArr['noindex'] = isset($dataArr['noindex']) ? 1 : 0;  
+        
         
         if($dataArr['price_id'] == ''){
             $dataArr['price_id'] = Helper::getPriceId($dataArr['price'], $dataArr['price_unit_id'], $dataArr['type']);

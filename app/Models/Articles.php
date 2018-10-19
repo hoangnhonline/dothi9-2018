@@ -36,7 +36,8 @@ class Articles extends Model  {
                             'description', 
                             'image_url', 
                             'content', 
-                            'meta_id', 
+                            'meta_id',
+                            'noindex',
                             'created_user', 
                             'updated_user'];
     public static function getListTag($id){

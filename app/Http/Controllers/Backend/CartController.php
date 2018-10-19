@@ -167,18 +167,22 @@ class CartController extends Controller
         
         $model->update($dataArr);
         if(Auth::user()->role > 1){
-            $userArr = $dataArr['user_id'];
-            // xu ly user   
-            UserCart::where('cart_id', $dataArr['id'])->delete();     
-            if( !empty( $userArr )){            
+            if(isset($dataArr['user_id'])){
+                $userArr = $dataArr['user_id'];
+                // xu ly user   
+                UserCart::where('cart_id', $dataArr['id'])->delete();     
+                if( !empty( $userArr )){            
 
-                foreach ($userArr as $user_id) {
-                    $model = new UserCart;
-                    $model->cart_id = $dataArr['id'];
-                    $model->user_id  = $user_id;                
-                    $model->save();
+                    foreach ($userArr as $user_id) {
+                        $model = new UserCart;
+                        $model->cart_id = $dataArr['id'];
+                        $model->user_id  = $user_id;                
+                        $model->save();
+                    }
                 }
-            }
+            }else{
+                UserCart::where('cart_id', $dataArr['id'])->delete();     
+            }    
         }
         Session::flash('message', 'Cập nhật giỏ hàng thành công');
 

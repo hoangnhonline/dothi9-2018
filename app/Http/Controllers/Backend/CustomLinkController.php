@@ -25,6 +25,8 @@ class CustomLinkController extends Controller
             $name = "Liên kết nổi bật";
         }elseif($block_id == 2){
             $name = "Link footer";
+        }elseif($block_id == 3){
+            $name = "Menu ngang footer";
         }
         $query = CustomLink::whereRaw('1');
 
@@ -50,6 +52,8 @@ class CustomLinkController extends Controller
             $name = "Liên kết nổi bật";
         }elseif($block_id == 2){
             $name = "Link footer";
+        }elseif($block_id == 3){
+            $name = "Menu ngang footer";
         }
         return view('backend.custom-link.create', compact('block_id', 'name'));
     }
@@ -105,6 +109,8 @@ class CustomLinkController extends Controller
             $name = "Liên kết nổi bật";
         }elseif($block_id == 2){
             $name = "Link footer";
+        }elseif($block_id == 3){
+            $name = "Menu ngang footer";
         }
         return view('backend.custom-link.edit', compact('detail', 'block_id', 'name'));
     }

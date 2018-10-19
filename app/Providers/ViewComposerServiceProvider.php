@@ -72,9 +72,15 @@ class ViewComposerServiceProvider extends ServiceProvider
         	$directionList = Direction::all();
         	$footerLink = CustomLink::where('block_id', 2)->orderBy('display_order', 'asc')->get();
 
+        	$footerLinkNgang = CustomLink::where('block_id', 3)->orderBy('display_order', 'asc')->get();
+
 			$view->with( ['loaiSpKey' => [], 'menuNgang' => [], 'menuDoc' => [], 'loaiSpHot' => [], 'settingArr' => $settingArr, 
 			'banList' => $banList, 'thueList' => $thueList, 'articleCate' => $articleCate, 'districtList' => $districtList, 'tinRandom' => $tinRandom, 'customLink' => $customLink, 'landingList' => $landingList, 'landing2List' => $landing2List, 'priceList' => $priceList, 'areaList' => $areaList,
-			'directionList' => $directionList, 'footerLink' => $footerLink, 'cityList' => $cityList] );
+			'directionList' => $directionList, 'footerLink' => $footerLink, 'cityList' => $cityList,
+			'footerLinkNgang' => $footerLinkNgang
+
+
+		] );
 			
 		});
 	}
