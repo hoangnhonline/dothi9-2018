@@ -389,10 +389,10 @@ var google_remarketing_only = true;
 		<section class="block block-get-news">
 			<div class="container">
 				<div class="block-contents">
-					<form action="" method="get" >
-						<input type="text" name="" value="" placeholder="Nhập địa chỉ email">
-						<button type="button" class="btnConfirm">Đăng ký</button>
-					</form>
+					
+						<input type="text" name="txtNewsletter" id="txtNewsletter" value="" placeholder="Nhập địa chỉ email">
+						<button type="button" id="btnNewsletter" class="btnConfirm">Đăng ký</button>
+					
 				</div>
 			</div>
 		</section><!-- /block-get-news -->
@@ -415,7 +415,7 @@ var google_remarketing_only = true;
   		<i class="fa fa-angle-up" aria-hidden="true"></i>
 	</a>
 	<!-- RETURN TO TOP -->
-
+	<input type="hidden" id="route-register-newsletter" value="{{ route('register.newsletter') }}">
 	<!-- ===== JS ===== -->
 	<script src="{{ URL::asset('assets/js/jquery.min.js') }}"></script>
 	<!-- JS Bootstrap -->
