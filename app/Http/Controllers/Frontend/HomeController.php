@@ -8,10 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Models\EstateType;
 
 use App\Models\Product;
-
-
 use App\Models\Banner;
-
+use App\Models\Pages;
 use App\Models\Location;
 use App\Models\City;
 use App\Models\District;
@@ -45,6 +43,11 @@ class HomeController extends Controller
         $id = $request->id;
         $column = $request->col;
         return Helper::getChild($module, $column, $id);
+    }
+    public function about(){
+        $detail = Pages::find(1);
+        $seo['title'] = $seo['description'] = $seo['keywords'] = 'Về chúng tôi';
+        return view('frontend.about', compact('detail', 'seo'));
     }
     /**
     * Display a listing of the resource.
