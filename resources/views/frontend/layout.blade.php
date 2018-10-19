@@ -187,7 +187,7 @@ var google_remarketing_only = true;
 			<section class="row">
 				
 				@yield('content')
-				@if(\Request::route()->getName() != "ky-gui" && \Request::route()->getName() != "ky-gui-thanh-cong" && (!isset($detailPage)))
+				@if(\Request::route()->getName() != "ky-gui" && \Request::route()->getName() != "ky-gui-thanh-cong" && \Request::route()->getName() != "contact" && (!isset($detailPage)))
 				<section class="col-sm-4 col-xs-12 block-sitebar">
 					@if(\Request::route()->getName() != "home" )
 					<article class="block block-box-search">
