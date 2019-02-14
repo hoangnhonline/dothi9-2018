@@ -2899,6 +2899,14 @@ h3.page-title-child {
 }
 
 /*===== Breadcrumb =====*/
+.block-news-new-detail h2 {
+    font-size: 18px;
+}
+blockquote {
+    background: #e5e5e5ed;
+}
+.block-news-new-content ul {margin-left:20px}
+.cate-news-detail-desc-content ul {margin-left:20px}
 .block-breadcrumb-page .breadcrumb {
     padding: 10px;
     margin: 10px 0;
@@ -2921,15 +2929,15 @@ h3.page-title-child {
 }
 @media (min-width: 600px) {
 .ppocta-ft-fix {
-    display: none;
+    /* display: normal; */
   }
 }
-@media (max-width: 550px) {
+@media (max-width: 2550px) {
 .ppocta-ft-fix {
     display: block;
     position: fixed;
     bottom: 10px;
-    left: 10px;
+    right: 10px;
     min-width: 120px;
     text-align: center;
     z-index: 9999;

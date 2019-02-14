@@ -69,52 +69,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-NBP2W4X');</script>
 <!-- End Google Tag Manager -->
-<script>
-  gtag('config', 'AW-802066843/4o-8CKHfjocBEJujuv4C', {
-    'phone_conversion_number': '0938865826'
-  });
-</script>
 </head>
-
 <body {{ \Request::route()->getName() == "home" ? 'class=page_home' : "" }}>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NBP2W4X"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<!-- Google Code for Xem Trang Dothi9 M&#7899;i Conversion Page -->
-<script type="text/javascript">
-/* <![CDATA[ */
-var google_conversion_id = 880998351;
-var google_conversion_label = "7nnXCIuXyYYBEM_vi6QD";
-var google_remarketing_only = false;
-/* ]]> */
-</script>
-<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
-</script>
-<noscript>
-<div style="display:inline;">
-<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/880998351/?label=7nnXCIuXyYYBEM_vi6QD&amp;guid=ON&amp;script=0"/>
-</div>
-</noscript>
-<!-- Google Code dành cho Thẻ tiếp thị lại -->
-<!--------------------------------------------------
-Không thể liên kết thẻ tiếp thị lại với thông tin nhận dạng cá nhân hay đặt thẻ tiếp thị lại trên các trang có liên quan đến danh mục nhạy cảm. Xem thêm thông tin và hướng dẫn về cách thiết lập thẻ trên: http://google.com/ads/remarketingsetup
---------------------------------------------------->
-<script type="text/javascript">
-/* <![CDATA[ */
-var google_conversion_id = 880998351;
-var google_custom_params = window.google_tag_params;
-var google_remarketing_only = true;
-/* ]]> */
-</script>
-<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
-</script>
-<noscript>
-<div style="display:inline;">
-<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/880998351/?guid=ON&amp;script=0"/>
-</div>
-</noscript>
-	<header id="header" class="header">
+<!-- End Google Tag Manager (noscript) -->	<header id="header" class="header">
 		<!-- <div class="header-register">
 			<div class="container">
 				<div class="logon">
